@@ -43,7 +43,7 @@ void creating_matrix(queue* que, std::ifstream& text, int** matrix, int N) {
 	int unit_1 = 0, unit_2 = 0;
 	while (!text.eof()) {
 		std::getline(text, str);
-		for (unsigned int i = 0; i < str.size()+1; i++) {
+		for (unsigned int i = 0; i < str.size() + 1; i++) {
 			if (str[i] != ';' && i < str.size())
 			{
 				word += str[i];
@@ -62,18 +62,28 @@ void creating_matrix(queue* que, std::ifstream& text, int** matrix, int N) {
 				word.clear();
 			}
 			else {
-				if (count == 2)
-					if (word != "N/A")
-						matrix[unit_1][unit_2] == atoi(word.c_str());
-					else
-						matrix[unit_1][unit_2] == 0;
-				else
-					if (word != "N/A")
-						matrix[unit_2][unit_1] == atoi(word.c_str());
-					else
-						matrix[unit_2][unit_1] == 0;
-				count++;
-				word.clear();
+				if (count == 2) {
+					if (word != "N/A") {
+						matrix[unit_1][unit_2] = atoi(word.c_str());
+						std::cout << matrix[unit_1][unit_2] << " ";
+					}
+					else {
+						matrix[unit_1][unit_2] = 0;
+						std::cout << matrix[unit_1][unit_2] << " ";
+					}
+				}
+				else {
+					if (word != "N/A") {
+						matrix[unit_2][unit_1] = atoi(word.c_str());
+						std::cout << matrix[unit_2][unit_1] << " ";
+					}
+					else {
+						matrix[unit_2][unit_1] = 0;
+						std::cout << matrix[unit_2][unit_1] << " ";
+					}
+				}
+					count++;
+					word.clear();
 			}
 		}
 		count = 0;
@@ -81,4 +91,21 @@ void creating_matrix(queue* que, std::ifstream& text, int** matrix, int N) {
 	}
 	str.clear();
 	word.clear();
+}
+void FU(int** D, int N){
+	int V = N;
+	for (int i = 0; i < V; i++) D[i][i] = 0;
+
+	for (int i = 0; i < V; i++)
+		for (int j = 0; j < V; j++)
+			for (int k = 0; k < V; k++)
+				if (D[j][i] && D[i][k] && j != k)
+					if (D[j][i] + D[i][k] < D[j][k] || D[j][k] == 0)
+						D[j][k] = D[j][i] + D[i][k];
+
+	for (int i = 0; i < V; i++)
+	{
+		for (int j = 0; j < V; j++) std::cout << D[i][j] << "\t";
+		std::cout << std::endl;
+	}
 }
