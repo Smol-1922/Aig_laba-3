@@ -65,21 +65,17 @@ void creating_matrix(queue* que, std::ifstream& text, int** matrix, int N) {
 				if (count == 2) {
 					if (word != "N/A") {
 						matrix[unit_1][unit_2] = atoi(word.c_str());
-						std::cout << matrix[unit_1][unit_2] << " ";
 					}
 					else {
 						matrix[unit_1][unit_2] = 0;
-						std::cout << matrix[unit_1][unit_2] << " ";
 					}
 				}
 				else {
 					if (word != "N/A") {
 						matrix[unit_2][unit_1] = atoi(word.c_str());
-						std::cout << matrix[unit_2][unit_1] << " ";
 					}
 					else {
 						matrix[unit_2][unit_1] = 0;
-						std::cout << matrix[unit_2][unit_1] << " ";
 					}
 				}
 					count++;
@@ -102,10 +98,4 @@ void FU(int** D, int N){
 				if (D[j][i] && D[i][k] && j != k)
 					if (D[j][i] + D[i][k] < D[j][k] || D[j][k] == 0)
 						D[j][k] = D[j][i] + D[i][k];
-
-	for (int i = 0; i < V; i++)
-	{
-		for (int j = 0; j < V; j++) std::cout << D[i][j] << "\t";
-		std::cout << std::endl;
-	}
 }

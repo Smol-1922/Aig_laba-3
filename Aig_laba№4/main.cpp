@@ -10,6 +10,7 @@ int main() {
 	SetConsoleOutputCP(1251);
 	std::ifstream file;
 	file.open("text.txt", std::ios::in);
+	int index_i, index_j;
 	queue* que = new queue;
 	reading(que, file);
 	int size = que->get_size();
@@ -51,6 +52,16 @@ int main() {
 		}
 		std::cout << std::endl;
 	}
-
+	std::cout << "Выбурите из какого города хотите проложить маршрут: " << std::endl;
+	for (int i = 0; i < que->get_size(); i++) {
+		std::cout << i + 1 << " " << que->at(i) << std::endl;
+	}
+	std::cin >> index_i;
+	std::cout << "Выбурите в какой город хотите прибыть: " << std::endl;
+	for (int i = 0; i < que->get_size(); i++) {
+		std::cout << i + 1 << " " << que->at(i) << std::endl;
+	}
+	std::cin >> index_j;
+	std::cout << "Наименьшая стоимость маршрута составляет: " << matrix_1[index_i-1][index_j-1]<< std::endl;
 	return 0;
 }
